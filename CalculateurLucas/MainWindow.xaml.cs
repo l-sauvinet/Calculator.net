@@ -14,7 +14,7 @@ namespace CalculateurLucas
         float First_nb = 0;
         float Second_nb = 0;
         float Result = 0;
-        int Operation = '0';
+        char Operation = '0';
 
         private void BTN_Number_Click(object sender, RoutedEventArgs e)
         {
@@ -26,6 +26,7 @@ namespace CalculateurLucas
         private void BTN_plus_Click(object sender, RoutedEventArgs e)
         {
             First_nb = float.Parse(TB_display.Text);
+            TB_display_secondary.Text = First_nb + " +";
             TB_display.Text = "";
             Operation = '+';
         }
@@ -33,6 +34,7 @@ namespace CalculateurLucas
         private void BTN_Moins_Click(object sender, RoutedEventArgs e)
         {
             First_nb = float.Parse(TB_display.Text);
+            TB_display_secondary.Text = First_nb + " -";
             TB_display.Text = "";
             Operation = '-';
         }
@@ -40,6 +42,7 @@ namespace CalculateurLucas
         private void BTN_Multiple_Click(object sender, RoutedEventArgs e)
         {
             First_nb = float.Parse(TB_display.Text);
+            TB_display_secondary.Text = First_nb + " *";
             TB_display.Text = "";
             Operation = '*';
         }
@@ -47,6 +50,7 @@ namespace CalculateurLucas
         private void BTN_Divise_Click(object sender, RoutedEventArgs e)
         {
             First_nb = float.Parse(TB_display.Text);
+            TB_display_secondary.Text = First_nb + " /";
             TB_display.Text = "";
             Operation = '/';
         }
@@ -59,18 +63,27 @@ namespace CalculateurLucas
             {
                 case '+':
                     Result = First_nb + Second_nb;
+                    TB_display_secondary.Text = $"{First_nb} + {Second_nb}";
                     break;
                 case '-':
                     Result = First_nb - Second_nb;
+                    TB_display_secondary.Text = $"{First_nb} - {Second_nb}";
                     break;
                 case '*':
                     Result = First_nb * Second_nb;
+                    TB_display_secondary.Text = $"{First_nb} * {Second_nb}";
                     break;
                 case '/':
                     if (Second_nb != 0)
+                    {
                         Result = First_nb / Second_nb;
+                        TB_display_secondary.Text = $"{First_nb} / {Second_nb}";
+                    }
                     else
+                    {
                         MessageBox.Show("Division par zéro n'est pas autorisée.");
+                        TB_display_secondary.Text = "";
+                    }
                     break;
             }
 
@@ -83,8 +96,8 @@ namespace CalculateurLucas
             Second_nb = 0;
             Result = 0;
             Operation = '0';
-            TB_display.Text = "";
-
+            TB_display.Text = "0";
+            TB_display_secondary.Text = "";
         }
 
         public void Display_nb (string number)
